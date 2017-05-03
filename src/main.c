@@ -14,9 +14,12 @@
     limitations under the License.
 */
 
-#include "ch.h"
-#include "hal.h"
-#include "ch_test.h"
+#include <ch.h>
+#include <hal.h>
+#include <chprintf.h>
+#include <shell.h>
+
+#include "cmd.h"
 
 /*
  * Green LED blinker thread, times are in milliseconds.
@@ -38,6 +41,7 @@ static THD_FUNCTION(Thread1, arg) {
  * Application entry point.
  */
 int main(void) {
+  thread_t *shelltp = NULL;
 
   /*
    * System initializations.
@@ -64,8 +68,17 @@ int main(void) {
    * sleeping in a loop and check the button state.
    */
   while (true) {
-    if (!palReadPad(GPIOC, GPIOC_BUTTON))
-      test_execute((BaseSequentialStream *)&SD1);
+    if (!shelltp) {
+      shelltp = shellCreate(&shellcfg, SHELL_WA_SIZE, NORMALPRIO);
+    }
+    else {
+      /* If the previous shell exited.*/
+      if (chThdTerminatedX(shelltp)) {
+        /* Recovers memory of the previous shell.*/
+        chThdRelease(shelltp);
+        shelltp = NULL;
+      }
+    }
     chThdSleepMilliseconds(500);
   }
 }

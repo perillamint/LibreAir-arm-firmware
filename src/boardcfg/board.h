@@ -24,8 +24,8 @@
 /*
  * Board identifier.
  */
-#define BOARD_ST_NUCLEO64_F103RB
-#define BOARD_NAME              "STMicroelectronics NUCLEO-F103RB"
+#define BOARD_LibreAir
+#define BOARD_NAME              "LibreAir"
 
 /*
  * Board frequencies.
@@ -43,11 +43,6 @@
 //#else
 //#define STM32_HSECLK            0
 //#endif
-
-/*
- * MCU type, supported types are defined in ./os/hal/platforms/hal_lld.h.
- */
-#define STM32F103xB
 
 /*
  * IO pins assignments.
