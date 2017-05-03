@@ -21,16 +21,17 @@ int cmd_peek(BaseSequentialStream *chp, int argc, char *argv[]) {
   }
 
   ret = sscanf(argv[0] + 2, "%x", (unsigned int*)&addr);
-  if(ret < 0) {
+  if(1 != ret) {
     chprintf(chp, "Invalid address format.\r\n");
     return -1;
   }
 
   ret = sscanf(argv[1], "%d", &size);
-  if(ret < 0) {
+  if(1 != ret) {
     chprintf(chp, "Invalid size format.\r\n");
     return -1;
   }
 
   dumpcode(addr, size);
+  return 0;
 }
