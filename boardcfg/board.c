@@ -38,7 +38,7 @@ const PALConfig pal_default_config =
  * any other initialization.
  */
 void __early_init(void) {
-
+  palInit(&pal_default_config);
   stm32_clock_init();
 }
 

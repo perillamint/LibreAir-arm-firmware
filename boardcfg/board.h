@@ -199,8 +199,8 @@
  * PA14 - Pull-down input           (GPIOA_SWCLK).
  */
 #define VAL_GPIOACRL            0x88384B88      /*  PA7...PA0 */
-#define VAL_GPIOACRH            0x88888888      /* PA15...PA8 */
-#define VAL_GPIOAODR            0xFFFFBFDF
+#define VAL_GPIOACRH            0x888884B8      /* PA15...PA8 */
+#define VAL_GPIOAODR            0xFFEBBFAF
 
 /*
  * Port B setup.
